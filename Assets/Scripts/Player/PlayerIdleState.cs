@@ -39,19 +39,12 @@ public class PlayerIdleState : PlayerBaseState
     }
     private void BumpAttack()
     {
-        if(contextStateMachine.superState == player.GetComponentInChildren<PlayerGroundState>() && contextStateMachine.GetAtkInput() > 0)
-        {
-            attackColliderObject.SetActive(true);
-            contextStateMachine.SetAimDirection(0,1);
-        }
+        
     }
 
     private void DefenseAttack()
     {
-        if(contextStateMachine.superState == player.GetComponentInChildren<PlayerAirState>() && contextStateMachine.GetAtkInput() > 0)
-        {
-            contextStateMachine.SetAimDirection(0.5f,1);
-        }
+        
 
     }
 

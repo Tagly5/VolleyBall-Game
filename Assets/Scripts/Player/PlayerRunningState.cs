@@ -47,10 +47,6 @@ public class PlayerRunningState : PlayerBaseState
     }
     private void CutAttack()
     {
-        if(contextStateMachine.superState == player.GetComponentInChildren<PlayerAirState>() && contextStateMachine.GetAtkInput() > 0)
-        {
-            attackColliderObject.SetActive(true);
-            contextStateMachine.SetAimDirection(1,-0.5f);
-        }
+        
     }
 }

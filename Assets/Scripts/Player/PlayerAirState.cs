@@ -42,11 +42,6 @@ public class PlayerAirState : PlayerBaseState
     }
     public override void CheckSwitchState(PlayerBaseState actualState)
     {
-        if(contextStateMachine.grounded && contextStateMachine.body.velocity.y < 0.01f)
-        {
-            PlayerBaseState newState = player.GetComponentInChildren<PlayerGroundState>();
-            actualState.Exit(newState);
-        }
         
     }
 }
