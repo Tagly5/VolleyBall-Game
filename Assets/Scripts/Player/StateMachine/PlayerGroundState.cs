@@ -7,12 +7,18 @@ public class PlayerGroundState : PlayerBaseState
     public override void Enter()
     {
         // Debug.Log("GROUND");
-        contextStateMachine = gameObject.GetComponentInParent<PlayerStateMachine>();
+        ctxMachine = gameObject.GetComponentInParent<PlayerStateMachine>();
     }
     public override void Do()
     {
         CheckSwitchState(this);
-        SubState(contextStateMachine.subState);
+        SubState(ctxMachine.subState);
+
+        if(ctxMachine.subState = player.GetComponentInChildren<PlayerIdleState>())
+        {
+            //Manchete
+            ctxMachine.SetAimDirection(0.01f, 1f);
+        }
     }
     public override void FixedDo()
     {
@@ -20,21 +26,21 @@ public class PlayerGroundState : PlayerBaseState
     }
     public override void SubState(PlayerBaseState actualSubState)
     {
-        if(Mathf.Abs(contextStateMachine.body.velocity.x) > 0.01f && actualSubState != player.GetComponentInChildren<PlayerRunningState>() )
+        if(Mathf.Abs(ctxMachine.body.velocity.x) > 0.01f && actualSubState != player.GetComponentInChildren<PlayerRunningState>() )
         {
             PlayerBaseState newSubState = player.GetComponentInChildren<PlayerRunningState>();
             newSubState.Enter();
-            contextStateMachine.subState = newSubState;
+            ctxMachine.subState = newSubState;
         }
     }
     public override void Exit(PlayerBaseState newState)
     {
-        contextStateMachine.superState = newState;
+        ctxMachine.superState = newState;
         newState.Enter();
     }
     public override void CheckSwitchState(PlayerBaseState actualState)
     {
-        if(contextStateMachine.GetyInput() == 1 || !contextStateMachine.grounded)
+        if(ctxMachine.GetyInput() == 1 || !ctxMachine.grounded)
         {
             
             PlayerBaseState newState = player.GetComponentInChildren<PlayerAirState>();

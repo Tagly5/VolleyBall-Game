@@ -9,13 +9,12 @@ public class PlayerIdleState : PlayerBaseState
     public override void Enter()
     {
         // Debug.Log("IDLE");
-        contextStateMachine = gameObject.GetComponentInParent<PlayerStateMachine>();
+        ctxMachine = gameObject.GetComponentInParent<PlayerStateMachine>();
     }
     public override void Do()
     {
         CheckSwitchState(this);
-        BumpAttack();
-        DefenseAttack();
+        
     }
 
 
@@ -25,13 +24,13 @@ public class PlayerIdleState : PlayerBaseState
     }
     public override void Exit(PlayerBaseState newSubState)
     {
-        contextStateMachine.subState = newSubState;
+        ctxMachine.subState = newSubState;
         newSubState.Enter();
 
     }
     public override void CheckSwitchState(PlayerBaseState actualSubState)
     {
-        if(Mathf.Abs(contextStateMachine.GetxInput()) > 0)
+        if(Mathf.Abs(ctxMachine.GetxInput()) > 0)
         {
             PlayerBaseState newSubState = player.GetComponentInChildren<PlayerRunningState>();
             actualSubState.Exit(newSubState);

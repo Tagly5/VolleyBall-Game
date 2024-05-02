@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134af0c82ddab47d091d2404aaa1ce9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contextStateMachine: {fileID: 0}
+  ctxMachine: {fileID: 410955570}
   player: {fileID: 410955567}
 --- !u!1 &276542730
 GameObject:
@@ -569,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d885de4ddf9476c8abb604ab577259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 3f0222245f21ed140bb5951a4aa18b39, type: 2}
   superState: {fileID: 0}
   subState: {fileID: 0}
   body: {fileID: 410955568}
@@ -576,9 +577,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  groundSpeed: 5
-  acceleration: 2
-  groundDecay: 0.698
   aimDirection: {x: 0, y: 0}
   grounded: 0
 --- !u!114 &410955571
@@ -906,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f300e81d6d404e6588dca7eb19cfbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contextStateMachine: {fileID: 0}
+  ctxMachine: {fileID: 410955570}
   player: {fileID: 410955567}
 --- !u!1 &1007625252
 GameObject:
@@ -1074,6 +1072,7 @@ MonoBehaviour:
   ballCatchCollider: {fileID: 771053870}
   aimDirection: {x: 0, y: 0}
   bumpPassForce: 10
+  bumpDecay: 0.808
 --- !u!1 &1044113203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93820725dde384faca3121db282ce382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contextStateMachine: {fileID: 0}
+  ctxMachine: {fileID: 410955570}
   player: {fileID: 410955567}
 --- !u!1 &1082131262
 GameObject:
@@ -1480,11 +1479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272cd80236e1542f8bd6e9064261e08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contextStateMachine: {fileID: 0}
+  ctxMachine: {fileID: 410955570}
   player: {fileID: 410955567}
-  jumpForce: 5
-  jumpTime: 0.3
-  jumpStartTime: 0
 --- !u!1 &1387024464
 GameObject:
   m_ObjectHideFlags: 0

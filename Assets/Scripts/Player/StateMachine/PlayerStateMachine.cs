@@ -10,17 +10,13 @@ using UnityEngine.UI;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    private GameObject attackColliderObject;
+    public PlayerData_SO playerData;
     public PlayerBaseState superState;
     public PlayerBaseState subState;
 
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
-    public float groundSpeed;
-    public float acceleration;
-    [Range(0,1f)] public float groundDecay;
-
     private float xInput;
     private float yInput;
     private float atkInput;
@@ -48,10 +44,6 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Update()
     {
-        if(atkInput < 0)
-        {
-            attackColliderObject.SetActive(false);
-        }
 
         superState.Do();
         subState.Do();
@@ -70,7 +62,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if(grounded && xInput == 0 )
         {
-            body.velocity *= groundDecay;
+            body.velocity *= playerData.groundDecay;
         }
     }
 

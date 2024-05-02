@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerBaseState : MonoBehaviour
 {
-    public PlayerStateMachine contextStateMachine;
+    public PlayerStateMachine ctxMachine;
     public GameObject player;
     public virtual void Enter() { }
     public virtual void SubState(PlayerBaseState actualSubState) { }

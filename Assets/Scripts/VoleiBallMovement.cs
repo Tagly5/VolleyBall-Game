@@ -11,7 +11,10 @@ public class VoleiBallMovement : MonoBehaviour
     [SerializeField] private CircleCollider2D ballCatchCollider;
     [SerializeField] private Vector2 aimDirection;
     private bool _hasTriggered;
-    [SerializeField] float bumpPassForce;
+    public float bumpPassForce;
+
+    [Range(0f, 1f)] public float bumpDecay;
+    
 
     void Start()
     {
