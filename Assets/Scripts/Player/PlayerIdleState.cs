@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerBaseState
 {
+    [SerializeField] private GameObject attackColliderObject;
     public override void Enter()
     {
         // Debug.Log("IDLE");
@@ -14,7 +15,12 @@ public class PlayerIdleState : PlayerBaseState
     public override void Do()
     {
         CheckSwitchState(this);
-
+        if(contextStateMachine.GetAtkInput() > 0)
+        {
+            attackColliderObject.SetActive(true);
+        }
+        else attackColliderObject.SetActive(false);
+        
     }
     public override void FixedDo()
     {

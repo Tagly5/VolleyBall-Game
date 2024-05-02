@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
@@ -28,6 +29,7 @@ public class PlayerStateMachine : MonoBehaviour
     #region Getters and Setters
     public float GetyInput() => yInput;
     public float GetxInput() => xInput;
+    public float GetAtkInput() => atkInput;
     
     #endregion
 
@@ -43,7 +45,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         superState.Do();
         subState.Do();
-
     }
 
 
