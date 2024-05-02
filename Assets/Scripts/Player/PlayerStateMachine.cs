@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class PlayerStateMachine : MonoBehaviour
 {
+    private GameObject attackColliderObject;
     public PlayerBaseState superState;
     public PlayerBaseState subState;
 
@@ -26,6 +27,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField] private Vector2 aimDirection;
     public bool grounded;
+
 
     #region Getters and Setters
     public float GetyInput() => yInput;
@@ -46,6 +48,11 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Update()
     {
+        if(atkInput < 0)
+        {
+            attackColliderObject.SetActive(false);
+        }
+
         superState.Do();
         subState.Do();
     }

@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
+  attackColliderObject: {fileID: 771053868}
 --- !u!1 &276542730
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +580,7 @@ MonoBehaviour:
   groundSpeed: 5
   acceleration: 2
   groundDecay: 0.698
+  aimDirection: {x: 0, y: 0}
   grounded: 0
 --- !u!114 &410955571
 MonoBehaviour:
@@ -838,7 +840,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -907,6 +909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
+  attackColliderObject: {fileID: 0}
 --- !u!1 &1007625252
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,7 +955,7 @@ Rigidbody2D:
     m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1007625254
 SpriteRenderer:
@@ -1068,8 +1071,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80083206149a489fbfea90e0069dd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 410955567}
   body: {fileID: 1007625253}
   ballCatchCollider: {fileID: 771053870}
+  aimDirection: {x: 0, y: 0}
   bumpPassForce: 10
 --- !u!1 &1044113203
 GameObject:
@@ -1275,6 +1280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
+  attackColliderObject: {fileID: 771053868}
 --- !u!1 &1082131262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1485,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
-  jumpForce: 3
+  attackColliderObject: {fileID: 0}
+  jumpForce: 5
   jumpTime: 0.3
   jumpStartTime: 0
 --- !u!1 &1387024464

@@ -15,6 +15,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         CheckSwitchState(this);
         BumpAttack();
+        DefenseAttack();
     }
 
 
@@ -43,7 +44,15 @@ public class PlayerIdleState : PlayerBaseState
             attackColliderObject.SetActive(true);
             contextStateMachine.SetAimDirection(0,1);
         }
-        else attackColliderObject.SetActive(false);
+    }
+
+    private void DefenseAttack()
+    {
+        if(contextStateMachine.superState == player.GetComponentInChildren<PlayerAirState>() && contextStateMachine.GetAtkInput() > 0)
+        {
+            contextStateMachine.SetAimDirection(0.5f,1);
+        }
+
     }
 
 }
