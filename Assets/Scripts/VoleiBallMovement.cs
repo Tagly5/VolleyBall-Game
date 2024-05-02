@@ -6,10 +6,11 @@ using UnityEngine;
 public class VoleiBallMovement : MonoBehaviour
 {
     
-    public GameObject player;
+    public PlayerStateMachine stateMachine;
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private CircleCollider2D ballCatchCollider;
     [SerializeField] private Vector2 aimDirection;
+    private bool _hasTriggered;
     [SerializeField] float bumpPassForce;
 
     void Start()
@@ -20,13 +21,25 @@ public class VoleiBallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aimDirection = player.GetComponent<PlayerStateMachine>().GetAimDirection();
+        aimDirection = stateMachine.GetComponent<PlayerStateMachine>().GetAimDirection();
+        if(_hasTriggered && stateMachine.GetComponent<PlayerStateMachine>().GetAtkInput() > 0)
+        {
+            body.velocity = aimDirection * bumpPassForce;
+        }
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other == ballCatchCollider)
         {
-            body.velocity = aimDirection * bumpPassForce;
+            _hasTriggered = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other == ballCatchCollider)
+        {
+            _hasTriggered = false;
         }
     }
 }

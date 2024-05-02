@@ -246,7 +246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
-  attackColliderObject: {fileID: 771053868}
 --- !u!1 &276542730
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +908,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
-  attackColliderObject: {fileID: 0}
 --- !u!1 &1007625252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,7 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80083206149a489fbfea90e0069dd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 410955567}
+  stateMachine: {fileID: 410955570}
   body: {fileID: 1007625253}
   ballCatchCollider: {fileID: 771053870}
   aimDirection: {x: 0, y: 0}
@@ -1280,7 +1278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
-  attackColliderObject: {fileID: 771053868}
 --- !u!1 &1082131262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextStateMachine: {fileID: 0}
   player: {fileID: 410955567}
-  attackColliderObject: {fileID: 0}
   jumpForce: 5
   jumpTime: 0.3
   jumpStartTime: 0
