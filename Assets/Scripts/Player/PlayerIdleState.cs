@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerBaseState
 {
-    [SerializeField] private GameObject attackColliderObject;
     public override void Enter()
     {
         // Debug.Log("IDLE");
@@ -15,13 +14,10 @@ public class PlayerIdleState : PlayerBaseState
     public override void Do()
     {
         CheckSwitchState(this);
-        if(contextStateMachine.GetAtkInput() > 0)
-        {
-            attackColliderObject.SetActive(true);
-        }
-        else attackColliderObject.SetActive(false);
-        
+        BumpAttack();
     }
+
+
     public override void FixedDo()
     {
 
@@ -39,6 +35,15 @@ public class PlayerIdleState : PlayerBaseState
             PlayerBaseState newSubState = player.GetComponentInChildren<PlayerRunningState>();
             actualSubState.Exit(newSubState);
         }
+    }
+    private void BumpAttack()
+    {
+        if(contextStateMachine.superState == player.GetComponentInChildren<PlayerGroundState>() && contextStateMachine.GetAtkInput() > 0)
+        {
+            attackColliderObject.SetActive(true);
+            contextStateMachine.SetAimDirection(0,1);
+        }
+        else attackColliderObject.SetActive(false);
     }
 
 }

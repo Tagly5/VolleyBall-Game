@@ -24,13 +24,16 @@ public class PlayerStateMachine : MonoBehaviour
     private float yInput;
     private float atkInput;
 
+    [SerializeField] private Vector2 aimDirection;
     public bool grounded;
 
     #region Getters and Setters
     public float GetyInput() => yInput;
     public float GetxInput() => xInput;
     public float GetAtkInput() => atkInput;
-    
+    public Vector2 GetAimDirection() => aimDirection;
+    public void SetAimDirection(float valueX, float valueY) => aimDirection = new Vector2(valueX, valueY);
+
     #endregion
 
     void Start()
