@@ -13,9 +13,6 @@ public class VoleiBallMovement : MonoBehaviour
     private bool _hasTriggered;
     public float bumpPassForce;
 
-    [Range(0f, 1f)] public float bumpDecay;
-    
-
     void Start()
     {
         
@@ -25,11 +22,15 @@ public class VoleiBallMovement : MonoBehaviour
     void Update()
     {
         aimDirection = stateMachine.GetComponent<PlayerStateMachine>().GetAimDirection();
+        
+
+    }
+    void FixedUpdate()
+    {
         if(_hasTriggered && stateMachine.GetComponent<PlayerStateMachine>().GetAtkInput() > 0)
         {
             body.velocity = aimDirection * bumpPassForce;
         }
-
     }
     void OnTriggerEnter2D(Collider2D other)
     {
