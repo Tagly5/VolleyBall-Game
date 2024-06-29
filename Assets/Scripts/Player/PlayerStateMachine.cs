@@ -13,7 +13,8 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerBaseState subState;
 
     public Rigidbody2D body;
-    public BoxCollider2D groundCheck;
+    public CircleCollider2D groundCheck;
+    public float groundRadius;
     public LayerMask groundMask;
     public float groundSpeed;
     public float acceleration;
@@ -34,15 +35,15 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         superState = gameObject.GetComponentInChildren<PlayerGroundState>();
-        subState = gameObject.GetComponentInChildren<PlayerIdleState>();
+        // subState = gameObject.GetComponentInChildren<PlayerIdleState>();
         superState.Enter();
-        subState.Enter();
+        // subState.Enter();
 
     }
     void Update()
     {
         superState.Do();
-        subState.Do();
+        // subState.Do();
 
     }
 
@@ -50,7 +51,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void FixedUpdate()
     {
         superState.FixedDo();
-        subState.FixedDo();
+        // subState.FixedDo();
         CheckGround();
         ApplyFriction();
     }
@@ -62,10 +63,13 @@ public class PlayerStateMachine : MonoBehaviour
             body.velocity *= groundDecay;
         }
     }
-
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.transform.position, groundRadius);
+    }
     public void CheckGround()
     {
-        grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max,groundMask).Length > 0;
+        grounded = Physics2D.OverlapCircle(groundCheck.transform.position, groundRadius, groundMask);
     }
 
     public void OnRun(InputAction.CallbackContext context){
