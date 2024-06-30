@@ -18,18 +18,20 @@ public class PlayerStateMachine : MonoBehaviour
     public LayerMask groundMask;
     public float groundSpeed;
     public float acceleration;
-    [Range(0,1f)] public float groundDecay;
+    [Range(0, 1f)] public float groundDecay;
 
     private float xInput;
     private float yInput;
     private float atkInput;
-
+    public float jumpForce;
     public bool grounded;
 
     #region Getters and Setters
     public float GetyInput() => yInput;
     public float GetxInput() => xInput;
-    
+
+    public float GetJumpForce() => jumpForce;
+
     #endregion
 
     void Start()
@@ -45,6 +47,7 @@ public class PlayerStateMachine : MonoBehaviour
         superState.Do();
         // subState.Do();
 
+
     }
 
 
@@ -55,10 +58,10 @@ public class PlayerStateMachine : MonoBehaviour
         CheckGround();
         ApplyFriction();
     }
-    
+
     public void ApplyFriction()
     {
-        if(grounded && xInput == 0 )
+        if (grounded && xInput == 0)
         {
             body.velocity *= groundDecay;
         }
@@ -72,39 +75,42 @@ public class PlayerStateMachine : MonoBehaviour
         grounded = Physics2D.OverlapCircle(groundCheck.transform.position, groundRadius, groundMask);
     }
 
-    public void OnRun(InputAction.CallbackContext context){
-        if(context.performed)
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             xInput = context.ReadValue<float>();
 
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             xInput = context.ReadValue<float>();
         }
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             // Debug.Log("Jumping...");
             yInput = context.ReadValue<float>();
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             yInput = context.ReadValue<float>();
         }
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             // Debug.Log("Attacking...");
             atkInput = context.ReadValue<float>();
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             atkInput = context.ReadValue<float>();
         }
     }
+
+
 }

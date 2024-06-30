@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundState : PlayerBaseState
+public class PlayerFallState : PlayerBaseState
 {
     public override void Enter()
     {
         // contextStateMachine = this.GetComponentInParent<PlayerStateMachine>();
-        Debug.Log("Ground entry");
+        Debug.Log("Falling entry");
     }
     public override void Do()
     {
         CheckSwitchState(this);
     }
+    public override void FixedDo()
+    {
+
+    }
+
     public override void CheckSwitchState(PlayerBaseState actualState)
     {
-        if (contextStateMachine.GetyInput() == 1f)
+        if (contextStateMachine.grounded && contextStateMachine.body.velocity.y == 0f)
         {
-            PlayerBaseState newState = contextStateMachine.gameObject.GetComponentInChildren<PlayerJumpingState>();
+            PlayerBaseState newState = contextStateMachine.gameObject.GetComponentInChildren<PlayerGroundState>();
             Exit(newState);
         }
     }
@@ -25,7 +30,6 @@ public class PlayerGroundState : PlayerBaseState
     {
         contextStateMachine.superState = newState;
         newState.Enter();
-        contextStateMachine.grounded = false;
         StopAllCoroutines();
     }
 }
